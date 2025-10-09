@@ -15,5 +15,11 @@ export const FilterBar = styled(Box)(({ theme }) => ({
     flexWrap: 'wrap',
     paddingBottom: theme.spacing(2),
     marginTop: theme.spacing(1),
-    borderBottom: "1px solid green"
 }));
+
+export const OuterNav = styled(Box)(({ theme }) => ({
+    display: "flex",
+    borderBottom: "1px solid green",
+    justifyContent: "space-between",
+    marginBottom: theme.spacing(8)
+}))
