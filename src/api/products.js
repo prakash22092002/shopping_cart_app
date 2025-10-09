@@ -13,7 +13,6 @@ export const fetchProductsAPI = async ({ page = 1, limit = 10, search = '', cate
 
         const response = await axios.get(url, { signal });
 
-        debugger
         console.log('API Response received:', response.data);
 
         return response.data;
