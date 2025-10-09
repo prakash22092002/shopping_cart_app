@@ -14,7 +14,6 @@ export const useProductStore = create((set, get) => ({
 
     fetchProducts: async () => {
         const { page } = get();
-        // debugger
 
         set({ loading: true, error: null });
 
@@ -23,15 +22,9 @@ export const useProductStore = create((set, get) => ({
                 page,
             });
 
-            // Debug the actual response structure
-            console.log('Full API response:', data);
-
             // for storing the value for the products and the total products from the endpoint
             const products = data?.products ?? [];
             const totalProducts = data?.totalResults ?? 0;
-
-            console.log(' Extracted products:', products);
-            console.log(' Extracted total:', totalProducts);
 
             set({
                 products: products,
@@ -66,7 +59,6 @@ export const useProductStore = create((set, get) => ({
     },
 
     setPage: (page) => {
-        console.log('Setting page to:', page);
         set({ page });
     },
 

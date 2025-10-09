@@ -44,7 +44,7 @@ const ProductTable = () => {
 
     const categories = useMemo(() => {
         const setCat = new Set();
-        console.log(products, "products for the select")
+
         products.forEach(p => {
             const category = p.main_category || 'Uncategorized';
             setCat.add(category);

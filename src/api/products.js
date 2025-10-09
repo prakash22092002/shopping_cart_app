@@ -9,11 +9,9 @@ export const fetchProductsAPI = async ({ page = 1, limit = 10, search = '', cate
         });
 
         const url = `${API_BASE}/cms/products?${params}`;
-        console.log('Making API request to:', url);
 
         const response = await axios.get(url, { signal });
 
-        console.log('API Response received:', response.data);
 
         return response.data;
     } catch (error) {
