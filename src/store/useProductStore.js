@@ -1,0 +1,73 @@
+import { create } from 'zustand';
+import { fetchProductsAPI, fetchProductByIdAPI } from '../api/products';
+
+export const useProductStore = create((set, get) => ({
+    products: [],
+    totalProducts: 0,
+    loading: false,
+    error: null,
+    page: 1,
+    pageSize: 10,
+    search: '',
+    category: '',
+    sort: '',
+
+    fetchProducts: async () => {
+        const { page } = get();
+        // debugger
+
+        set({ loading: true, error: null });
+
+        try {
+            const data = await fetchProductsAPI({
+                page,
+            });
+
+            // Debug the actual response structure
+            console.log('Full API response:', data);
+
+            // for storing the value for the products and the total products from the endpoint
+            const products = data?.products ?? [];
+            const totalProducts = data?.totalResults ?? 0;
+
+            console.log(' Extracted products:', products);
+            console.log(' Extracted total:', totalProducts);
+
+            set({
+                products: products,
+                totalProducts: parseInt(totalProducts) || 0,
+                loading: false,
+                error: null
+            });
+        } catch (error) {
+            console.error('Store error:', error);
+            set({
+                error: error?.message ?? 'Failed to load products',
+                loading: false
+            });
+        }
+    },
+
+    fetchProductById: async (id) => {
+        set({ loading: true, error: null });
+        try {
+            const data = await fetchProductByIdAPI(id);
+            set({
+                products: [data],
+                loading: false,
+                error: null
+            });
+        } catch (error) {
+            set({
+                error: error.message || 'Failed to load product',
+                loading: false
+            });
+        }
+    },
+
+    setPage: (page) => {
+        console.log('Setting page to:', page);
+        set({ page });
+    },
+
+}));
