@@ -158,8 +158,17 @@ const ProductTable = () => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 cursor: 'pointer',
-                                transition: 'transform 0.2s, box-shadow 0.2s',
-                                '&:hover': { transform: 'translateY(-2px)', boxShadow: 3 },
+                                transition: 'all 0.3s ease',
+                                borderRadius: 3,
+                                border: '2px solid #d4e8c1',
+                                backgroundColor: '#fcffe8', // Light cream-yellow that matches the bg
+                                boxShadow: '0 3px 10px rgba(0, 128, 64, 0.1)',
+                                '&:hover': {
+                                    transform: 'translateY(-6px)',
+                                    boxShadow: '0 12px 28px rgba(0, 128, 64, 0.2)',
+                                    borderColor: '#9fc880',
+                                    backgroundColor: '#fffef0'
+                                },
                             }}
                             onClick={() => handleProductClick(product)}
                         >
@@ -168,27 +177,68 @@ const ProductTable = () => {
                                 height='180'
                                 image={getImage(product)}
                                 alt={product.name}
-                                sx={{ objectFit: 'cover', backgroundColor: '#f5f5f5' }}
+                                sx={{
+                                    objectFit: 'cover',
+                                    backgroundColor: '#f0f4e8',
+                                    borderBottom: '2px solid #d4e8c1'
+                                }}
                             />
-                            <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                            <CardContent sx={{
+                                flexGrow: 1,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                p: 2.5,
+                                backgroundColor: 'transparent'
+                            }}>
                                 <Typography
-                                    variant='p'
                                     sx={{
-                                        mb: 1,
+                                        mb: 1.5,
                                         overflow: 'hidden',
                                         textOverflow: 'ellipsis',
                                         display: '-webkit-box',
                                         WebkitLineClamp: 2,
                                         WebkitBoxOrient: 'vertical',
+                                        fontSize: '1rem',
+                                        fontWeight: 600,
+                                        color: '#2d5016',
+                                        minHeight: '2.8em',
+                                        lineHeight: 1.4
                                     }}
                                 >
                                     {product.name}
                                 </Typography>
-                                <Typography variant='body2' color='text.secondary' sx={{ mb: 0.5 }}>
-                                    <strong>Category:</strong> {getCategory(product)}
+                                <Typography
+                                    variant='body2'
+                                    sx={{
+                                        mb: 0.5,
+                                        color: '#5a7a3d',
+                                        fontSize: '0.875rem',
+                                        backgroundColor: '#e8f5d8',
+                                        padding: '4px 8px',
+                                        borderRadius: 1,
+                                        display: 'inline-block',
+                                        alignSelf: 'flex-start'
+                                    }}
+                                >
+                                    <strong style={{ color: '#3d5a25' }}>Category:</strong> {getCategory(product)}
                                 </Typography>
-                                <Box sx={{ mt: 'auto' }}>
-                                    <Typography variant='subtitle1' sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                                <Box sx={{
+                                    mt: 'auto',
+                                    pt: 2,
+                                    borderTop: '2px solid #d4e8c1',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between'
+                                }}>
+                                    <Typography
+                                        variant='subtitle1'
+                                        sx={{
+                                            fontWeight: 'bold',
+                                            color: '#008040',
+                                            fontSize: '1.35rem',
+                                            textShadow: '0 1px 2px rgba(0, 128, 64, 0.1)'
+                                        }}
+                                    >
                                         ₹ {getPrice(product)}
                                     </Typography>
                                 </Box>

@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 
 export const TableContainer = styled(Box)(({ theme }) => ({
     width: '100%',
+    minHeight: "100vh",
     boxSizing: 'border-box',
     padding: theme.spacing(2),
 }));

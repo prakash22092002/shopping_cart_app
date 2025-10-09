@@ -4,7 +4,7 @@ import { CircularProgress } from '@mui/material';
 
 
 const ProductTable = lazy(() => import('./pages/ProductTable'));
-const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+// const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 
 
 const App = () => (
@@ -12,7 +12,7 @@ const App = () => (
     <Suspense fallback={<CircularProgress sx={{ display: 'block', mx: 'auto', mt: 4 }} />}>
       <Routes>
         <Route path='/' element={<ProductTable />} />
-        <Route path='/product/:id' element={<ProductDetail />} />
+        {/* <Route path='/product/:id' element={<ProductDetail />} /> */}
       </Routes>
     </Suspense>
   </Router>
