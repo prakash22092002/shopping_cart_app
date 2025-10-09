@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Grid, Card, CardMedia, CardContent, Typography, TextField, MenuItem, Select, InputLabel, FormControl, Box, Pagination, Skeleton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useProductStore } from '../store/useProductStore';
-import { TableContainer, FilterBar } from '../styles/ProductTable.styles';
+import { TableContainer, FilterBar, OuterNav } from '../styles/ProductTable.styles';
 
 const ProductTable = () => {
     const navigate = useNavigate();
@@ -66,48 +66,64 @@ const ProductTable = () => {
     return (
         <TableContainer>
             {/* Filter Bar */}
+            <OuterNav>
 
-            <FilterBar>
-                {loading ? (
-                    <>
-                        <Skeleton variant="rectangular" width={200} height={40} />
-                        <Skeleton variant="rectangular" width={150} height={40} />
-                        <Skeleton variant="rectangular" width={150} height={40} />
-                    </>
-                ) : (
-                    <>
-                        {/* search by nmae  */}
-                        <TextField
-                            label='Search by name'
-                            variant='outlined'
-                            size='small'
-                            sx={{ minWidth: 200 }}
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        {/* category section */}
-                        <FormControl size='small' sx={{ minWidth: 150 }}>
-                            <InputLabel>Category</InputLabel>
-                            <Select label='Category' value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
-                                <MenuItem value=''>DEFAULT</MenuItem>
-                                {categories.map(category => (
-                                    <MenuItem key={category} value={category}>{category}</MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Typography
+                        sx={{
+                            fontFamily: 'Arial, sans-serif',
+                            color: '#008040',
+                            fontWeight: 'bold',
+                            fontSize: "1.4em"
+                        }}
+                    >
+                        SmallBasket
+                    </Typography>
+                </Box>
 
-                        {/* sort by price */}
-                        <FormControl size='small' sx={{ minWidth: 150 }}>
-                            <InputLabel>Sort by Price</InputLabel>
-                            <Select label='Sort by Price' value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-                                <MenuItem value=''>Default</MenuItem>
-                                <MenuItem value='asc'>Low to High</MenuItem>
-                                <MenuItem value='desc'>High to Low</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </>
-                )}
-            </FilterBar>
+                <FilterBar>
+                    {loading ? (
+                        <>
+                            <Skeleton variant="rectangular" width={200} height={40} />
+                            <Skeleton variant="rectangular" width={150} height={40} />
+                            <Skeleton variant="rectangular" width={150} height={40} />
+                        </>
+                    ) : (
+                        <>
+                            {/* search by nmae  */}
+                            <TextField
+                                label='Search by name'
+                                variant='outlined'
+                                size='small'
+                                sx={{ minWidth: 200 }}
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            {/* category section */}
+                            <FormControl size='small' sx={{ minWidth: 150 }}>
+                                <InputLabel>Category</InputLabel>
+                                <Select label='Category' value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+                                    <MenuItem value=''>DEFAULT</MenuItem>
+                                    {categories.map(category => (
+                                        <MenuItem key={category} value={category}>{category}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+
+                            {/* sort by price */}
+                            <FormControl size='small' sx={{ minWidth: 150 }}>
+                                <InputLabel>Sort by Price</InputLabel>
+                                <Select label='Sort by Price' value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                                    <MenuItem value=''>Default</MenuItem>
+                                    <MenuItem value='asc'>Low to High</MenuItem>
+                                    <MenuItem value='desc'>High to Low</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </>
+                    )}
+                </FilterBar>
+            </OuterNav>
+
 
 
 
