@@ -27,9 +27,11 @@ import { useProductStore } from "../store/useProductStore";
 import createCartStore from "../store/useCartStore";
 import { TableContainer, FilterBar, OuterNav } from "../styles/ProductTable.styles";
 
+
+
 const ProductTable = () => {
     const navigate = useNavigate();
-    const { products, fetchProducts, loading, totalProducts, page, pageSize, setPage } =
+    const { products, fetchProducts, loading, totalProducts, page, pageSize, setPage, fetchProductById } =
         useProductStore();
 
     const { myCart, insertIntoCart } = createCartStore();
@@ -86,7 +88,10 @@ const ProductTable = () => {
     }, [products]);
 
     const handleProductClick = (product) => {
+
         const productId = product.id || product.gtin || product.sku_code;
+        // debugger
+        fetchProductById(productId, product)
         navigate(`/product/${productId}`);
     };
 

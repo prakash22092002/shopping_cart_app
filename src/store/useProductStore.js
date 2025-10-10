@@ -41,15 +41,16 @@ export const useProductStore = create((set, get) => ({
         }
     },
 
-    fetchProductById: async (id) => {
+    fetchProductById: async (id, singleProductData) => {
         set({ loading: true, error: null });
         try {
-            const data = await fetchProductByIdAPI(id);
+            // const data = await fetchProductByIdAPI(id); 
             set({
-                products: [data],
+                products: [singleProductData],
                 loading: false,
                 error: null
             });
+            // debugger
         } catch (error) {
             set({
                 error: error.message || 'Failed to load product',
