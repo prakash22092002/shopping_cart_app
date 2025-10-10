@@ -48,6 +48,7 @@ src/
 │   └── SnackbarAlert.jsx
 ├── pages/
 │   └── ProductTable.jsx
+│   └── ProductDetail.jsx
 ├── store/
 │   ├── useProductStore.js
 │   └── useCartStore.js
