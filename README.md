@@ -34,6 +34,8 @@ A **responsive e-commerce product dashboard** built with React, Material-UI (MUI
 ---
 
 ## 📂 Folder Structure
+
+```plaintext
 src/
 ├── components/
 │   ├── Navbar.jsx
