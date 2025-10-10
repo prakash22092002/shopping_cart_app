@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import {
     Card,
     CardMedia,
@@ -18,6 +20,7 @@ import {
     Alert,
     IconButton,
     Badge,
+    Drawer,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useProductStore } from "../store/useProductStore";
@@ -29,21 +32,21 @@ const ProductTable = () => {
     const { products, fetchProducts, loading, totalProducts, page, pageSize, setPage } =
         useProductStore();
 
-    const { myCart, insertIntoCart } = createCartStore()
+    const { myCart, insertIntoCart } = createCartStore();
 
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
     const [sortOrder, setSortOrder] = useState("");
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
     useEffect(() => {
         fetchProducts();
     }, [page, pageSize]);
 
     const handleAddToCart = (product) => {
-
-        insertIntoCart(product)
+        insertIntoCart(product);
         setSnackbarMessage(`${product.name} added to cart!`);
         setSnackbarOpen(true);
     };
@@ -96,11 +99,66 @@ const ProductTable = () => {
     const getPrice = (product) => product.mrp?.mrp || "0";
     const totalPages = Math.ceil(totalProducts / pageSize);
 
+    const renderFilterContent = () => (
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                gap: 2,
+                alignItems: { xs: "flex-start", sm: "center" },
+                p: 2,
+            }}
+        >
+            <TextField
+                label="Search by name"
+                variant="outlined"
+                size="small"
+                sx={{ minWidth: 200, }}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <FormControl size="small" sx={{ minWidth: 150 }}>
+                <InputLabel>Category</InputLabel>
+                <Select
+                    label="Category"
+                    value={categoryFilter}
+                    onChange={(e) => setCategoryFilter(e.target.value)}
+                >
+                    <MenuItem value="">DEFAULT</MenuItem>
+                    {categories.map((category) => (
+                        <MenuItem key={category} value={category}>
+                            {category}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+            <FormControl size="small" sx={{ minWidth: 150 }}>
+                <InputLabel>Sort by Price</InputLabel>
+                <Select
+                    label="Sort by Price"
+                    value={sortOrder}
+                    onChange={(e) => setSortOrder(e.target.value)}
+                >
+                    <MenuItem value="">Default</MenuItem>
+                    <MenuItem value="asc">Low to High</MenuItem>
+                    <MenuItem value="desc">High to Low</MenuItem>
+                </Select>
+            </FormControl>
+
+            <IconButton>
+                <Badge badgeContent={myCart.length} color="success">
+                    <ShoppingCartIcon sx={{ color: "#008040" }} />
+                </Badge>
+            </IconButton>
+        </Box>
+    );
+
     return (
         <TableContainer>
-            {/* Filter Bar */}
+            {/* Responsive Navbar */}
             <OuterNav>
-                <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                {/* Logo */}
+                <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Typography
                         sx={{
                             fontFamily: "Arial, sans-serif",
@@ -113,7 +171,15 @@ const ProductTable = () => {
                     </Typography>
                 </Box>
 
-                <FilterBar>
+                {/* Hamburger for mobile */}
+                <Box sx={{ display: { xs: "block", sm: "none" } }}>
+                    <IconButton onClick={() => setDrawerOpen(true)}>
+                        <MenuIcon sx={{ color: "#008040" }} />
+                    </IconButton>
+                </Box>
+
+                {/* Desktop Filters */}
+                <FilterBar sx={{ display: { xs: "none", sm: "flex" } }}>
                     {loading ? (
                         <>
                             <Skeleton variant="rectangular" width={200} height={40} />
@@ -121,52 +187,35 @@ const ProductTable = () => {
                             <Skeleton variant="rectangular" width={150} height={40} />
                         </>
                     ) : (
-                        <>
-                            <TextField
-                                label="Search by name"
-                                variant="outlined"
-                                size="small"
-                                sx={{ minWidth: 200 }}
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                            <FormControl size="small" sx={{ minWidth: 150 }}>
-                                <InputLabel>Category</InputLabel>
-                                <Select
-                                    label="Category"
-                                    value={categoryFilter}
-                                    onChange={(e) => setCategoryFilter(e.target.value)}
-                                >
-                                    <MenuItem value="">DEFAULT</MenuItem>
-                                    {categories.map((category) => (
-                                        <MenuItem key={category} value={category}>
-                                            {category}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                            <FormControl size="small" sx={{ minWidth: 150 }}>
-                                <InputLabel>Sort by Price</InputLabel>
-                                <Select
-                                    label="Sort by Price"
-                                    value={sortOrder}
-                                    onChange={(e) => setSortOrder(e.target.value)}
-                                >
-                                    <MenuItem value="">Default</MenuItem>
-                                    <MenuItem value="asc">Low to High</MenuItem>
-                                    <MenuItem value="desc">High to Low</MenuItem>
-                                </Select>
-                            </FormControl>
-
-                            <IconButton>
-                                <Badge badgeContent={myCart.length} color="success">
-                                    <ShoppingCartIcon sx={{ color: "#008040" }} />
-                                </Badge>
-                            </IconButton>
-                        </>
+                        renderFilterContent()
                     )}
                 </FilterBar>
             </OuterNav>
+
+            {/* Drawer for mobile filters */}
+            <Drawer
+                anchor="right"
+                open={drawerOpen}
+                onClose={() => setDrawerOpen(false)}
+                PaperProps={{
+                    sx: { width: "80%", p: 2 },
+                }}
+            >
+                <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+                    <IconButton onClick={() => setDrawerOpen(false)} >
+                        <CloseIcon />
+                    </IconButton>
+                </Box>
+                {loading ? (
+                    <>
+                        <Skeleton variant="rectangular" width="100%" height={40} sx={{ mb: 2 }} />
+                        <Skeleton variant="rectangular" width="100%" height={40} sx={{ mb: 2 }} />
+                        <Skeleton variant="rectangular" width="100%" height={40} />
+                    </>
+                ) : (
+                    renderFilterContent()
+                )}
+            </Drawer>
 
             {/* Cards Grid */}
             <Box
@@ -225,11 +274,11 @@ const ProductTable = () => {
                         >
                             <CardMedia
                                 component="img"
-                                height="180"
                                 image={getImage(product)}
                                 alt={product.name}
                                 sx={{
-                                    objectFit: "cover",
+                                    height: 180,
+                                    objectFit: "contain",
                                     backgroundColor: "#f0f4e8",
                                     borderBottom: "2px solid #d4e8c1",
                                 }}
