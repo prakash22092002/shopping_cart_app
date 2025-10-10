@@ -36,16 +36,13 @@ const ProductTable = () => {
     const [sortOrder, setSortOrder] = useState("");
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
-    // const [cartCount, setCartCount] = useState(0);
 
     useEffect(() => {
         fetchProducts();
     }, [page, pageSize]);
 
     const handleAddToCart = (product) => {
-        // debugger
-        // setCartCount((prev) => prev + 1);
-        // console.log(product, "THIS IS CART DATA 2")
+
         insertIntoCart(product)
         setSnackbarMessage(`${product.name} added to cart!`);
         setSnackbarOpen(true);
