@@ -34,23 +34,23 @@ A **responsive e-commerce product dashboard** built with React, Material-UI (MUI
 ---
 
 ## 📂 Folder Structure
-
 src/
 ├── components/
-│ ├── Navbar.jsx
-│ ├── FilterDrawer.jsx
-│ ├── ProductCard.jsx
-│ ├── ProductGrid.jsx
-│ ├── ProductFilters.jsx
-│ └── SnackbarAlert.jsx
+│   ├── Navbar.jsx
+│   ├── FilterDrawer.jsx
+│   ├── ProductCard.jsx
+│   ├── ProductGrid.jsx
+│   ├── ProductFilters.jsx
+│   └── SnackbarAlert.jsx
 ├── pages/
-│ └── ProductTable.jsx
+│   └── ProductTable.jsx
 ├── store/
-│ ├── useProductStore.js
-│ └── useCartStore.js
+│   ├── useProductStore.js
+│   └── useCartStore.js
 ├── styles/
-│ └── ProductTable.styles.js
+│   └── ProductTable.styles.js
 └── App.jsx
+
 
 
 
