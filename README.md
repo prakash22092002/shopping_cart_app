@@ -1,16 +1,122 @@
-# React + Vite
+# 🛒 SmallBasket – Product Table Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-17.0.2-blue?logo=react)](https://reactjs.org/)
+[![MUI](https://img.shields.io/badge/MUI-5.0.0-green?logo=mui)](https://mui.com/)
+[![Zustand](https://img.shields.io/badge/Zustand-State%20Management-orange)](https://zustand-demo.pmnd.rs/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Currently, two official plugins are available:
+A **responsive e-commerce product dashboard** built with React, Material-UI (MUI), and Zustand. Users can browse products, search, filter, sort, view details, and manage a shopping cart.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🌟 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Product Listing:** Responsive grid layout of products.
+- **Search:** Real-time search by product name.
+- **Filter:** Filter products by category.
+- **Sort:** Sort products by price (ascending/descending).
+- **Product Details:** Click a product to view detailed info.
+- **Add to Cart:** Add products to a shopping cart with snackbar alert.
+- **Responsive Design:** Mobile-friendly with a drawer for filters.
+- **Pagination:** Navigate through multiple pages of products.
+- **Skeleton Loading:** Placeholder UI while fetching data.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **Frontend:** React.js
+- **UI Library:** Material-UI (MUI)
+- **State Management:** Zustand
+- **Routing:** React Router DOM
+- **Styling:** MUI `sx` prop + custom styled components
+
+---
+
+## 📂 Folder Structure
+
+src/
+├── components/
+│ ├── Navbar.jsx
+│ ├── FilterDrawer.jsx
+│ ├── ProductCard.jsx
+│ ├── ProductGrid.jsx
+│ ├── ProductFilters.jsx
+│ └── SnackbarAlert.jsx
+├── pages/
+│ └── ProductTable.jsx
+├── store/
+│ ├── useProductStore.js
+│ └── useCartStore.js
+├── styles/
+│ └── ProductTable.styles.js
+└── App.jsx
+
+
+
+
+---
+
+## 📷 Screenshots
+
+**Product Grid**  
+![Product Grid](https://via.placeholder.com/800x400?text=Product+Grid)
+
+**Product Card Hover**  
+![Product Card Hover](https://via.placeholder.com/400x400?text=Card+Hover)
+
+**Mobile Filter Drawer**  
+![Mobile Drawer](https://via.placeholder.com/400x600?text=Mobile+Drawer)
+
+> Replace the placeholder images with actual screenshots from your app for better impact.
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the Repository**
+
+git clone https://github.com/<your-username>/smallbasket.git
+cd smallbasket
+
+
+Install Dependencies
+npm install
+
+--- 
+
+Run Development Server
+npm run dev
+
+---
+
+Open your browser at http://localhost:3000
+ to see the app.
+
+🔗 Live Demo : https://subtle-pavlova-18edaf.netlify.app/
+
+⚡ Usage
+
+Search Products: Use the search bar to filter products by name.
+
+Filter by Category: Select a category from the dropdown.
+
+Sort Products: Sort products by price (Low to High / High to Low).
+
+Add to Cart: Click “Add Cart” button on any product card.
+
+Mobile Filters: Tap the menu icon on mobile to open the filter drawer.
+
+Pagination: Use pagination controls to navigate between pages.
+
+---
+
+📦 Components Overview
+
+Component	Description
+Navbar	Responsive top navigation with logo and desktop filters.
+ProductFilters	Search, category filter, and sort dropdowns.
+FilterDrawer	Drawer component for mobile filters.
+ProductGrid	Grid layout of product cards with skeleton loading.
+ProductCard	Displays product image, name, category, price, and Add to Cart button.
+SnackbarAlert	Visual alert when product is added to cart.
