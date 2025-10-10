@@ -396,8 +396,7 @@ const ProductTable = () => {
                         page={page}
                         onChange={(e, value) => setPage(value)}
                         color="primary"
-                        showFirstButton
-                        showLastButton
+
                     />
                 </Box>
             )}
