@@ -42,6 +42,8 @@ src/
 │   ├── FilterDrawer.jsx
 │   ├── ProductCard.jsx
 │   ├── ProductGrid.jsx
+|   ├── ProductImage.jsx
+|   ├── ProductInfo.jsx
 │   ├── ProductFilters.jsx
 │   └── SnackbarAlert.jsx
 ├── pages/
