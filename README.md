@@ -61,16 +61,14 @@ src/
 
 ## 📷 Screenshots
 
-**Product Grid**  
-![Product Grid](https://via.placeholder.com/800x400?text=Product+Grid)
+**Product Grid**
+![Product Grid](src/assets/product-cart.png)
 
-**Product Card Hover**  
-![Product Card Hover](https://via.placeholder.com/400x400?text=Card+Hover)
+**Product Card Hover**
+![Product Card Hover](src/assets/product-card-hover.png)
 
-**Mobile Filter Drawer**  
-![Mobile Drawer](https://via.placeholder.com/400x600?text=Mobile+Drawer)
-
-> Replace the placeholder images with actual screenshots from your app for better impact.
+**Mobile Filter Drawer**
+![Mobile Filter Drawer](src/assets/mobile-drawer.png)
 
 ---
 
