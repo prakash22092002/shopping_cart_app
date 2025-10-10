@@ -55,23 +55,6 @@ src/
 
 
 
-
-
----
-
-## 📷 Screenshots
-
-**Product Grid**
-![Product Grid](src/assets/product-cart.png)
-
-**Product Card Hover**
-![Product Card Hover](src/assets/product-card-hover.png)
-
-**Mobile Filter Drawer**
-![Mobile Filter Drawer](src/assets/mobile-drawer.png)
-
----
-
 ## 🚀 Getting Started
 
 1. **Clone the Repository**
