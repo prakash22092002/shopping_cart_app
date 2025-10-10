@@ -21,6 +21,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useProductStore } from "../store/useProductStore";
+import createCartStore from "../store/useCartStore";
 import { TableContainer, FilterBar, OuterNav } from "../styles/ProductTable.styles";
 
 const ProductTable = () => {
@@ -28,19 +29,24 @@ const ProductTable = () => {
     const { products, fetchProducts, loading, totalProducts, page, pageSize, setPage } =
         useProductStore();
 
+    const { myCart, insertIntoCart } = createCartStore()
+
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
     const [sortOrder, setSortOrder] = useState("");
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
-    const [cartCount, setCartCount] = useState(0);
+    // const [cartCount, setCartCount] = useState(0);
 
     useEffect(() => {
         fetchProducts();
     }, [page, pageSize]);
 
     const handleAddToCart = (product) => {
-        setCartCount((prev) => prev + 1);
+        // debugger
+        // setCartCount((prev) => prev + 1);
+        // console.log(product, "THIS IS CART DATA 2")
+        insertIntoCart(product)
         setSnackbarMessage(`${product.name} added to cart!`);
         setSnackbarOpen(true);
     };
@@ -156,7 +162,7 @@ const ProductTable = () => {
                             </FormControl>
 
                             <IconButton>
-                                <Badge badgeContent={cartCount} color="success">
+                                <Badge badgeContent={myCart.length} color="success">
                                     <ShoppingCartIcon sx={{ color: "#008040" }} />
                                 </Badge>
                             </IconButton>
