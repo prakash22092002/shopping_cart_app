@@ -183,7 +183,7 @@ const ProductTable = () => {
                         <Card
                             key={idx}
                             sx={{
-                                height: 350,
+                                height: 400,
                                 display: "flex",
                                 flexDirection: "column",
                             }}
@@ -201,7 +201,7 @@ const ProductTable = () => {
                         <Card
                             key={product.id || product.gtin || product.sku_code}
                             sx={{
-                                height: 350,
+                                height: 400,
                                 display: "flex",
                                 flexDirection: "column",
                                 justifyContent: "space-between",
